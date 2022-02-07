@@ -1,0 +1,37 @@
+export const thumbnails: string[]  = [
+
+    // All hockey team's logos, in the order that they appear in https://statsapi.web.nhl.com/api/v1/teams
+
+    "https://upload.wikimedia.org/wikipedia/en/thumb/9/9f/New_Jersey_Devils_logo.svg/454px-New_Jersey_Devils_logo.svg.png",
+    "https://upload.wikimedia.org/wikipedia/en/thumb/4/42/Logo_New_York_Islanders.svg/330px-Logo_New_York_Islanders.svg.png",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/New_York_Rangers.svg/212px-New_York_Rangers.svg.png",
+    "https://upload.wikimedia.org/wikipedia/en/thumb/d/dc/Philadelphia_Flyers.svg/220px-Philadelphia_Flyers.svg.png",
+    "https://upload.wikimedia.org/wikipedia/en/thumb/c/c0/Pittsburgh_Penguins_logo_%282016%29.svg/220px-Pittsburgh_Penguins_logo_%282016%29.svg.png",
+    "https://upload.wikimedia.org/wikipedia/en/thumb/1/12/Boston_Bruins.svg/220px-Boston_Bruins.svg.png",
+    "https://upload.wikimedia.org/wikipedia/en/thumb/9/9e/Buffalo_Sabres_Logo.svg/220px-Buffalo_Sabres_Logo.svg.png",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Montreal_Canadiens.svg/220px-Montreal_Canadiens.svg.png",
+    "https://upload.wikimedia.org/wikipedia/en/thumb/b/b2/Ottawa_Senators_2020-2021_logo.svg/220px-Ottawa_Senators_2020-2021_logo.svg.png",
+    "https://upload.wikimedia.org/wikipedia/en/thumb/b/b6/Toronto_Maple_Leafs_2016_logo.svg/220px-Toronto_Maple_Leafs_2016_logo.svg.png",
+    "https://upload.wikimedia.org/wikipedia/en/thumb/3/32/Carolina_Hurricanes.svg/220px-Carolina_Hurricanes.svg.png",
+    "https://upload.wikimedia.org/wikipedia/en/thumb/4/43/Florida_Panthers_2016_logo.svg/220px-Florida_Panthers_2016_logo.svg.png",
+    "https://upload.wikimedia.org/wikipedia/en/thumb/2/2f/Tampa_Bay_Lightning_Logo_2011.svg/220px-Tampa_Bay_Lightning_Logo_2011.svg.png",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Washington_Capitals.svg/330px-Washington_Capitals.svg.png",
+    "https://upload.wikimedia.org/wikipedia/en/thumb/2/29/Chicago_Blackhawks_logo.svg/220px-Chicago_Blackhawks_logo.svg.png",
+    "https://upload.wikimedia.org/wikipedia/en/thumb/e/e0/Detroit_Red_Wings_logo.svg/220px-Detroit_Red_Wings_logo.svg.png",
+    "https://upload.wikimedia.org/wikipedia/en/thumb/9/9c/Nashville_Predators_Logo_%282011%29.svg/220px-Nashville_Predators_Logo_%282011%29.svg.png",
+    "https://upload.wikimedia.org/wikipedia/en/thumb/e/ed/St._Louis_Blues_logo.svg/220px-St._Louis_Blues_logo.svg.png",
+    "https://upload.wikimedia.org/wikipedia/en/thumb/6/61/Calgary_Flames_logo.svg/330px-Calgary_Flames_logo.svg.png",
+    "https://upload.wikimedia.org/wikipedia/en/thumb/4/45/Colorado_Avalanche_logo.svg/220px-Colorado_Avalanche_logo.svg.png",
+    "https://upload.wikimedia.org/wikipedia/en/thumb/4/4d/Logo_Edmonton_Oilers.svg/220px-Logo_Edmonton_Oilers.svg.png",
+    "https://upload.wikimedia.org/wikipedia/en/thumb/3/3a/Vancouver_Canucks_logo.svg/220px-Vancouver_Canucks_logo.svg.png",
+    "https://upload.wikimedia.org/wikipedia/en/thumb/7/72/Anaheim_Ducks.svg/220px-Anaheim_Ducks.svg.png",
+    "https://upload.wikimedia.org/wikipedia/en/thumb/c/ce/Dallas_Stars_logo_%282013%29.svg/220px-Dallas_Stars_logo_%282013%29.svg.png",
+    "https://upload.wikimedia.org/wikipedia/en/thumb/6/63/Los_Angeles_Kings_logo.svg/220px-Los_Angeles_Kings_logo.svg.png",
+    "https://upload.wikimedia.org/wikipedia/en/thumb/3/37/SanJoseSharksLogo.svg/220px-SanJoseSharksLogo.svg.png",
+    "https://upload.wikimedia.org/wikipedia/en/thumb/5/5d/Columbus_Blue_Jackets_logo.svg/220px-Columbus_Blue_Jackets_logo.svg.png",
+    "https://upload.wikimedia.org/wikipedia/en/thumb/1/1b/Minnesota_Wild.svg/220px-Minnesota_Wild.svg.png",
+    "https://upload.wikimedia.org/wikipedia/en/thumb/9/93/Winnipeg_Jets_Logo_2011.svg/220px-Winnipeg_Jets_Logo_2011.svg.png",
+    "https://upload.wikimedia.org/wikipedia/en/thumb/9/9e/Arizona_Coyotes_logo_%282021%29.svg/220px-Arizona_Coyotes_logo_%282021%29.svg.png",
+    "https://upload.wikimedia.org/wikipedia/en/thumb/a/ac/Vegas_Golden_Knights_logo.svg/220px-Vegas_Golden_Knights_logo.svg.png",
+    "https://upload.wikimedia.org/wikipedia/en/thumb/4/48/Seattle_Kraken_official_logo.svg/330px-Seattle_Kraken_official_logo.svg.png"
+]

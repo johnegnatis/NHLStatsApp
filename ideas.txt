@@ -1,0 +1,4 @@
+https://statsapi.web.nhl.com/api/v1/teams?expand=team.stats //show all team stats
+https://statsapi.web.nhl.com/api/v1/teams?expand=team.roster //shows team roster, from where i can display stats
+
+https://github.com/dword4/nhlapi#:~:text=GET%20https%3A%2F%2Fstatsapi.web,division%2C%20conference%20and%20franchise%20information.
