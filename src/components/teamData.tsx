@@ -2,6 +2,7 @@ import React from "react";
 import { useTable } from "react-table";
 import {Column} from "react-table"
 
+
 interface TeamProps {
     ot : number;
     win : number;
@@ -11,7 +12,6 @@ interface TeamProps {
 
 export const TeamData: React.FC<TeamProps> = (props): JSX.Element => {
 
-    // var wlo :string[] = ["" + props.ot, "" + ]
     const data = React.useMemo(
         () => [
             {
@@ -51,16 +51,16 @@ export const TeamData: React.FC<TeamProps> = (props): JSX.Element => {
  
     return (
     // apply the table props
-    <table {...getTableProps()} className="bg-black">
+    <table {...getTableProps()} className="bg-black border-2 border-solid border-gray-500">
         <thead className="">
         {// Loop over the header rows
         headerGroups.map(headerGroup => (
             // Apply the header row props
-            <tr {...headerGroup.getHeaderGroupProps()}>
+            <tr {...headerGroup.getHeaderGroupProps()} >
             {// Loop over the headers in each row
             headerGroup.headers.map(column => (
                 // Apply the header cell props
-                <th {...column.getHeaderProps()}>
+                <th className="m-0 p-2 border-b-2 border-r-2 border-r-gray-500 border-b-gray-500" {...column.getHeaderProps()}>
                 {// Render the header
                 column.render('Header')}
                 </th>
@@ -76,12 +76,12 @@ export const TeamData: React.FC<TeamProps> = (props): JSX.Element => {
             prepareRow(row)
             return (
             // Apply the row props
-            <tr {...row.getRowProps()}>
+            <tr className="m-0 p-2 border-b-2 border-r-2 border-r-gray-500 border-b-gray-500" {...row.getRowProps()}>
                 {// Loop over the rows cells
                 row.cells.map(cell => {
                 // Apply the cell props
                 return (
-                    <td {...cell.getCellProps()}>
+                    <td className="m-0 p-2 border-b-2 border-r-2 border-r-gray-500 border-b-gray-500"  {...cell.getCellProps()}>
                     {// Render the cell contents
                     cell.render('Cell')}
                     </td>

@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { thumbnails } from "./thumbnails";
 import { TeamData } from "./teamData";
+import { GetPlayerData } from "./GetPlayerData";
+import {website, statModifier} from "./apiWebsite"
 
 export const TeamDisplay = (): JSX.Element => {
     let params = useParams();
@@ -11,12 +13,9 @@ export const TeamDisplay = (): JSX.Element => {
     const [loading, setLoading] = React.useState(false);
     const [error, setError] = React.useState(null);
 
-    const website : string = 'https://statsapi.web.nhl.com';
-    const modifier : string = '?expand=team.stats';
-
     useEffect(() => {
         setLoading(true);
-        fetch(website + '/api/v1/teams' + modifier)
+        fetch(website + '/api/v1/teams' + statModifier)
             .then((response) => response.json())
             .then(setData)
             .then(() => setLoading(false))
@@ -53,7 +52,9 @@ export const TeamDisplay = (): JSX.Element => {
                     win = {data.teams[x].teamStats[0].splits[0].stat.wins}
                     loss = {data.teams[x].teamStats[0].splits[0].stat.losses}
                     ot = {data.teams[x].teamStats[0].splits[0].stat.ot}
-
+                />
+                <GetPlayerData
+                    link = {`${website}/api/v1/teams/${x}/roster`}
                 />
             </div>
             <div className=" h-screen">
