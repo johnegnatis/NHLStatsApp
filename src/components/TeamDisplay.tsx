@@ -54,7 +54,7 @@ export const TeamDisplay = (): JSX.Element => {
                     ot = {data.teams[x].teamStats[0].splits[0].stat.ot}
                 />
                 <GetPlayerData
-                    link = {`${website}/api/v1/teams/${x}/roster`}
+                    link = {`${website}/api/v1/teams/${x+1}/roster`}
                 />
             </div>
             <div className=" h-screen">
