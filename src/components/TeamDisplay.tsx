@@ -31,7 +31,7 @@ export const TeamDisplay = (): JSX.Element => {
         for(x = 0; x < data.teams.length; x++)
         {
             //find the api team
-            if(data.teams[x].teamName == params.teamName)
+            if(data.teams[x].teamName === params.teamName)
             {
                 break;
             }
@@ -39,13 +39,12 @@ export const TeamDisplay = (): JSX.Element => {
     }
     
     if(!data) return <>data error</>;
-
     return (
         //data.team[x] to get current team
         <section className= "bg-mainbg bg-fixed bg-auto md:bg-cover text-white lg:px-24 xl:px-52 text-center bottom-0">
             <div className="flex justify-between p-10">
                 <h1 className="text-5xl text-left p-5">{data.teams[x].teamName}</h1>
-                <img src={thumbnails[x]} width="100"></img>
+                <img alt ="teamlogo" src={thumbnails[x]} width="100"></img>
             </div>
             <div> 
                 <TeamData 
@@ -54,12 +53,10 @@ export const TeamDisplay = (): JSX.Element => {
                     ot = {data.teams[x].teamStats[0].splits[0].stat.ot}
                 />
                 <GetPlayerData
-                    link = {`${website}/api/v1/teams/${x+1}/roster`}
+                    link = {`${website}/api/v1/teams/${data.teams[x].id}/roster`}
                 />
             </div>
-            <div className=" h-screen">
-
-            </div>
+            <div className=" h-screen"/>
         
         </section>
         )

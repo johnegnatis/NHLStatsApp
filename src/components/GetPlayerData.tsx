@@ -18,7 +18,7 @@ export const GetPlayerData: React.FC<PlayerProps> = (props): JSX.Element =>  {
             .then(setData)
             .then(() => setLoading(false))
             .catch(setError)
-    }, []);
+    }, [props.link]);
 
     if(loading) return <h1>Loading...</h1>;
 
@@ -29,12 +29,31 @@ export const GetPlayerData: React.FC<PlayerProps> = (props): JSX.Element =>  {
 
     if(data) {
       for(let x = 0; x < data.roster.length; x++) {
-        rowList.push(<GetIndividualPlayerData key = {x} id = {data.roster[x].person.id} name = {data.roster[x].person.name}/>);
+        console.log(data.roster.length)
+        let goalie = false;
+        if(data.roster[x].position.code === "G")
+          goalie = true;
+        rowList.push(<GetIndividualPlayerData 
+            key = {x} 
+            id = {data.roster[x].person.id} 
+            name = {data.roster[x].person.fullName}
+            isGoalie = {goalie}
+          />);
       }
     }
       return (
-        <table>
-        {rowList}
+      <table>
+        <thead>
+          <tr>
+            <td>Name</td>
+            <td>Goals</td>
+            <td>Assists</td>
+            <td>Hits</td>
+          </tr>
+        </thead>
+        <tbody>
+          {rowList}
+        </tbody>
       </table>
       )
     }

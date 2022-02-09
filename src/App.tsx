@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import { TeamThumbnail } from './components/TeamThumbnail';
 import { thumbnails } from './components/thumbnails';
+import { website } from './components/apiWebsite';
 
 export var items : JSX.Element[] = [];
 export function App() {
@@ -11,8 +12,6 @@ export function App() {
     const [loading, setLoading] = React.useState(false);
     const [error, setError] = React.useState(null);
 
-    const website : string = 'https://statsapi.web.nhl.com';
-    const statsModifier : string = '?expand=team.stats';
 
     useEffect(() => {
         setLoading(true);

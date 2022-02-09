@@ -19,7 +19,7 @@ export const TeamData: React.FC<TeamProps> = (props): JSX.Element => {
                 col2: props.loss.toString(),
                 col3: props.ot.toString(),
             }],
-        []
+        [props.win, props.loss, props.ot]
     )
     
     const columns : readonly Column<{ col1: string; col2: string; col3: string; }>[] = React.useMemo(
