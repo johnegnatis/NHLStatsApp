@@ -3,7 +3,7 @@
 - credit to *https://statsapi.web.nhl.com/* for api
 - credit to *dword4/nhlapi* for documentation of NHL relatedAPIs
 
-![NHL logo](https://en.wikipedia.org/wiki/National_Hockey_League#/media/File:05_NHL_Shield.svg)
+![NHL logo](https://upload.wikimedia.org/wikipedia/en/thumb/3/3a/05_NHL_Shield.svg/190px-05_NHL_Shield.svg.png)
 
 ### Greeting all hockey fans!
 
