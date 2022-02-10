@@ -3,6 +3,8 @@
 - credit to *https://statsapi.web.nhl.com/* for api
 - credit to *dword4/nhlapi* for documentation of NHL relatedAPIs
 
+![NHL logo]https://en.wikipedia.org/wiki/National_Hockey_League#/media/File:05_NHL_Shield.svg
+
 ### Greeting all hockey fans!
 
 To see the app, clone the repo. and run the app with 'npm start'
