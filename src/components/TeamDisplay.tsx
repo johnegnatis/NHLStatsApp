@@ -1,10 +1,10 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { thumbnails } from "./thumbnails";
-import { TeamData } from "./teamData";
-import { GetPlayerData } from "./GetPlayerData";
-import {website, statModifier} from "./apiWebsite"
+import { thumbnails } from "./data/thumbnails";
+import { TableTeam } from "./TableTeam";
+import {website, statModifier} from "./data/apiWebsite"
+import { PlayerData } from "./playerComponents/PlayerData";
 
 export const TeamDisplay = (): JSX.Element => {
     let params = useParams();
@@ -41,23 +41,23 @@ export const TeamDisplay = (): JSX.Element => {
     if(!data) return <>data error</>;
     return (
         //data.team[x] to get current team
-        <section className= "bg-mainbg bg-fixed bg-auto md:bg-cover text-white lg:px-24 xl:px-52 text-center bottom-0">
-            <div className="flex justify-between p-10">
+        <section className= "bg-mainbg bg-fixed bg-auto md:bg-cover text-white lg:px-36 xl:px-64 text-center p-20">
+            <div className="flex justify-center object-scale-down">
                 <h1 className="text-5xl text-left p-5">{data.teams[x].teamName}</h1>
+            </div>
+            <div className="flex justify-center object-scale-down">
                 <img alt ="teamlogo" src={thumbnails[x]} width="100"></img>
             </div>
-            <div> 
-                <TeamData 
+            <div className="flex justify-center object-scale-down"> 
+                {/* <TableTeam 
                     win = {data.teams[x].teamStats[0].splits[0].stat.wins}
                     loss = {data.teams[x].teamStats[0].splits[0].stat.losses}
                     ot = {data.teams[x].teamStats[0].splits[0].stat.ot}
-                />
-                <GetPlayerData
+                /> */}
+                <PlayerData
                     link = {`${website}/api/v1/teams/${data.teams[x].id}/roster`}
                 />
-            </div>
-            <div className=" h-screen"/>
-        
+            </div>        
         </section>
         )
 } 

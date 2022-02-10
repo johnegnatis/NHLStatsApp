@@ -7,7 +7,7 @@ export function Body() {
             <h1 className="font-bold text-7xl">NHL Stat Tracker</h1>
             <h2 className="m-2 pb-10 text-xl">Click on your favorite team to learn more!</h2>
             <Teams />
-            <div className="pt-10 lg:pt-72"></div>
+            <div className="pt-10 lg:pt-10"></div>
         </section>
         
     )

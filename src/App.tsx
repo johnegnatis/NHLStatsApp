@@ -2,13 +2,13 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import { TeamThumbnail } from './components/TeamThumbnail';
-import { thumbnails } from './components/thumbnails';
-import { website } from './components/apiWebsite';
+import { thumbnails } from './components/data/thumbnails';
+import { website } from './components/data/apiWebsite';
 
 export var items : JSX.Element[] = [];
 export function App() {
 
-    const [data, setData] = useState <null | {teams: any}>(null);
+    const [data, setData] = useState <null | {teams: any, copyright: any}>(null);
     const [loading, setLoading] = React.useState(false);
     const [error, setError] = React.useState(null);
 
@@ -49,7 +49,11 @@ export function App() {
 
             {/* <h1 className='pt-5 text-center' >HEADER</h1> */}
             <Outlet/>  
-            {/* <h1 className='pt-5 text-center'>FOOTER</h1> */}
+            <footer className='text-white bg-black h-50 text-center px-10 xl:px-20 py-5'>
+                <span
+                    className=''
+                >{data.copyright}</span>
+            </footer>
         </div>
     );
 }

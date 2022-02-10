@@ -10,7 +10,7 @@ interface TeamProps {
     
 }
 
-export const TeamData: React.FC<TeamProps> = (props): JSX.Element => {
+export const TableTeam: React.FC<TeamProps> = (props): JSX.Element => {
 
     const data = React.useMemo(
         () => [
