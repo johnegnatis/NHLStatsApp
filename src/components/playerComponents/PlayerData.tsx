@@ -9,9 +9,13 @@ interface PlayerProps {
 
 export const PlayerData: React.FC<PlayerProps> = (props): JSX.Element =>  {
 
+    let playerList: JSX.Element[] = [];
+    let goalieList: JSX.Element[] = []; 
+
     const [data, setData] = useState <null | {roster: any}>(null);
     const [loading, setLoading] = React.useState(false);
     const [error, setError] = React.useState(null);
+
     useEffect(() => {
         setLoading(true);
         fetch(props.link)
@@ -26,8 +30,6 @@ export const PlayerData: React.FC<PlayerProps> = (props): JSX.Element =>  {
     if(error) return <pre>{JSON.stringify(error, null, 2)}</pre>
 
     if(!data) return <> error</>;
-    var playerList: JSX.Element[] = [];
-    var goalieList: JSX.Element[] = [];
 
     if(data) {
       for(let x = 0; x < data.roster.length; x++) {
@@ -44,7 +46,6 @@ export const PlayerData: React.FC<PlayerProps> = (props): JSX.Element =>  {
             name = {data.roster[x].person.fullName}
           />);
       }
-
     }
       return (
       <div>

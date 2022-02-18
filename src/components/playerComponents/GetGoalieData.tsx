@@ -44,7 +44,7 @@ export const GetGoalieData: React.FC<PlayerId> = (props): JSX.Element =>  {
         </tr>
      )
     }
-    else 
-      return ( <tr></tr> )
+     
+    return ( <tr></tr> )
 
       }
