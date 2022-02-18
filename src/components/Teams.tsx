@@ -1,8 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useTable } from 'react-table'
+import { useTable, useSortBy } from 'react-table';
 import { thumbnails } from './data/thumbnails';
-
 
 interface TeamTableProps {
     wins : number[];
@@ -32,13 +31,12 @@ export const Teams: React.FC<TeamTableProps> = (props): JSX.Element => {
                     <div className="h-12">
                       <img
                         src = {tableProps.row.original.logo}
-                        width= {40}
+                        width= {35}
                         alt='logo'
                       />
                     </div>
                     <h3>{tableProps.row.original.locationName + " " + tableProps.row.original.teamName}</h3>
                   </div>
-                  
                 )
               },
               {
@@ -54,7 +52,6 @@ export const Teams: React.FC<TeamTableProps> = (props): JSX.Element => {
         ],
         []
       )
-    
       const data : TeamTableRow[] = [];
       for(let x = 0; x < props.teamName.length; x++){
         data.push({
@@ -80,10 +77,12 @@ function Table({ columns, data }) {
         headerGroups,
         rows,
         prepareRow,
-    } = useTable({
+    } = useTable(
+      {
         columns,
         data,
-    })
+      },
+    useSortBy)
 
     let navigate = useNavigate(); 
     const routeChange = (path:string) =>{ 
@@ -95,8 +94,18 @@ function Table({ columns, data }) {
             <thead>
             {headerGroups.map(headerGroup => (
                 <tr {...headerGroup.getHeaderGroupProps()}>
-                {headerGroup.headers.map(column => (
-                    <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+                {headerGroup.headers.map((column : (any)) => (
+                    <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                    {column.render('Header')}
+                    {/* Add a sort direction indicator */}
+                    <span>
+                      {column.isSorted
+                        ? column.isSortedDesc
+                          ? ' 🔽'
+                          : ' 🔼'
+                        : ''}
+                    </span>
+                  </th>
                 ))}
                 </tr>
             ))}
