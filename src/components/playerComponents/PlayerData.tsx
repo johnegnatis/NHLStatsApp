@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { GetGoalieData } from "./GetGoalieData"
 import {GetPlayerData} from "./GetPlayerData"
+import axios from 'axios';
 
 interface PlayerProps {
   link : string;
