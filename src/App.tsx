@@ -1,8 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
-import { TeamThumbnail } from './components/TeamThumbnail';
-import { thumbnails } from './components/data/thumbnails';
 import { website } from './components/data/apiWebsite';
 
 export var items : JSX.Element[] = [];
@@ -26,28 +24,10 @@ export function App() {
 
     if(error) return <pre>{JSON.stringify(error, null, 2)}</pre>
 
-    if(data) {
-        for(let i = 0; i < data.teams.length; i++) {
-                let srcWin : number = data.teams[i].teamStats[0].splits[0].stat.wins;
-                let srcLoss : number = (data.teams[i].teamStats[0].splits[0].stat.losses + data.teams[i].teamStats[0].splits[0].stat.ot);
-                items.push(
-                    <TeamThumbnail 
-                        key = {i} 
-                        logo = {thumbnails[i]}
-                        win = {srcWin}
-                        loss = {srcLoss}
-                        locationName = {data.teams[i].locationName}
-                        teamName = {data.teams[i].teamName}
-                    />
-                )
-            }
-    }
     if(!data) return null;
 
     return (
         <div className='relative min-h-screen font-mainfont'>
-
-            {/* <h1 className='pt-5 text-center' >HEADER</h1> */}
             <Outlet/>  
             <footer className='text-white bg-black h-50 text-center px-10 xl:px-20 py-5'>
                 <span

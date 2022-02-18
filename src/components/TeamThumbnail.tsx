@@ -29,7 +29,8 @@ export const TeamThumbnail: React.FC<ThumbnailProps> = (props): JSX.Element => {
                     src = {props.logo}
                     alt = ""
                     className="m-1 h-12"
-                ></img>
+                >
+                </img>
             </div>
         </div>
     )

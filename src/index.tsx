@@ -12,7 +12,6 @@ ReactDOM.render(
         <Routes>
           <Route path="/" element={<App />}>
             <Route index element= {<Body/>}/>
-            {/* {routes} */}
             <Route path =":teamName" element = {<TeamDisplay/> } />
             <Route
               path="*"

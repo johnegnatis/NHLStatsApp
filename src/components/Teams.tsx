@@ -1,19 +1,121 @@
 import React from "react";
-import { items } from "../App";
+import { useNavigate } from "react-router-dom";
+import { useTable } from 'react-table'
+import { thumbnails } from './data/thumbnails';
 
-export function Teams() {
+
+interface TeamTableProps {
+    wins : number[];
+    losses: number[];
+    teamName: string[];
+    locationName: string[];
+}
+interface TeamTableRow {
+    wins : number;
+    losses: number;
+    teamName: string;
+    locationName: string;
+    logo: string;
+}
+
+export const Teams: React.FC<TeamTableProps> = (props): JSX.Element => {
+    const columns = React.useMemo(
+        () => [
+          {
+            Header: 'NHL Teams',
+            columns: [
+              {
+                Header: 'Team Name',
+                accessor: 'name',
+                Cell: (tableProps: { row: { original: { logo: string | undefined; locationName: string; teamName: string; }; }; }) => (
+                  <div className="flex">
+                    <div className="h-12">
+                      <img
+                        src = {tableProps.row.original.logo}
+                        width= {40}
+                        alt='logo'
+                      />
+                    </div>
+                    <h3>{tableProps.row.original.locationName + " " + tableProps.row.original.teamName}</h3>
+                  </div>
+                  
+                )
+              },
+              {
+                Header: 'Wins',
+                accessor: 'wins',
+              },
+              {
+                Header: 'Losses',
+                accessor: 'losses'
+              },
+            ],
+          } 
+        ],
+        []
+      )
     
-        var arrayItems : any[] = [];
-        for(let x = 0; x < items.length/2; x+=1) //TODO FIND OUT WHY THIS IS RETURNING DUPLICATE
-            arrayItems.push(items[x]);
+      const data : TeamTableRow[] = [];
+      for(let x = 0; x < props.teamName.length; x++){
+        data.push({
+            teamName: props.teamName[x],
+            locationName: props.locationName[x],
+            wins: props.wins[x],
+            losses: props.losses[x],
+            logo : thumbnails[x],
+        })
+      }
+    
+      return (
+        <Table columns={columns} data={data} />
+      )
+    
+}
+//@ts-ignore
+function Table({ columns, data }) {
+    // Use the state and functions returned from useTable to build your UI
+    const {
+        getTableProps,
+        getTableBodyProps,
+        headerGroups,
+        rows,
+        prepareRow,
+    } = useTable({
+        columns,
+        data,
+    })
 
-        return (
-            <section className="">
-                <div
-                    className="flex flex-wrap justify-center"
+    let navigate = useNavigate(); 
+    const routeChange = (path:string) =>{ 
+        navigate(path)
+    }
+
+    return (
+        <table {...getTableProps()} className="bg-black w-full">
+            <thead>
+            {headerGroups.map(headerGroup => (
+                <tr {...headerGroup.getHeaderGroupProps()}>
+                {headerGroup.headers.map(column => (
+                    <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+                ))}
+                </tr>
+            ))}
+            </thead>
+            <tbody {...getTableBodyProps()}>
+            {rows.map((row, i) => {
+                prepareRow(row)
+                return (
+                <tr className=" hover:text-blue-500" {...row.getRowProps({})}
+                  //@ts-ignore
+                  onClick={() => routeChange(row.original.teamName)}
                 >
-                    {arrayItems}
-                </div>
-            </section>
+                    {row.cells.map(cell => {
+                    return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                    })}
+                </tr>
+                )
+            })}
+            </tbody>
+        </table>
         )
 }
