@@ -21,32 +21,47 @@ export function Body() {
     if(error) return <pre>{JSON.stringify(error, null, 2)}</pre>
 
     let teamNamesArray : string[] = [];
+    let rankingArray : string[] = [];
     let locationNameArray : string[] = [];
     let winsArray : number[] = [];
     let lossArray : number[] = [];
+    let otArray : number[] = [];
+    let gfArray: number[] = [];
+    let gaArray: number[] = [];
+    let conferencesArray: string[] = [];
     if(data) {
         for(let i = 0; i < data.teams.length; i++) {
-                let srcWin : number = data.teams[i].teamStats[0].splits[0].stat.wins;
-                let srcLoss : number = (data.teams[i].teamStats[0].splits[0].stat.losses + data.teams[i].teamStats[0].splits[0].stat.ot);
+                winsArray.push(data.teams[i].teamStats[0].splits[0].stat.wins);
+                lossArray.push(data.teams[i].teamStats[0].splits[0].stat.losses);
+                otArray.push(data.teams[i].teamStats[0].splits[0].stat.ot);
                 teamNamesArray.push(data.teams[i].teamName);
                 locationNameArray.push(data.teams[i].locationName);
-                winsArray.push(srcWin);
-                lossArray.push(srcLoss);
+                rankingArray.push(data.teams[i].teamStats[0].splits[1].stat.pts)
+                gfArray.push(data.teams[i].teamStats[0].splits[0].stat.goalsPerGame)
+                gaArray.push(data.teams[i].teamStats[0].splits[0].stat.goalsAgainstPerGame)
+                conferencesArray.push(data.teams[i].conference.name.substring(0,4))
             }
     }
 
     if(!data) return null;
     
     return(
-        <section className=" bg-mainbg bg-fixed bg-auto md:bg-cover text-white lg:px-24 xl:px-52 text-center pt-10" >
-            <h1 className="font-bold text-7xl">NHL Stat Tracker</h1>
-            <h2 className="m-2 pb-10 text-xl">Click on your favorite team to learn more!</h2>
+        <section className="bg-gray-400 bg-fixed bg-auto md:bg-cover text-white lg:px-24 xl:px-52 text-center pt-10" >
+            <div className="text-black font-extrabold">
+                <h1 className="font-bold text-7xl">NHL Stat Tracker</h1>
+                <h2 className="m-2 pb-10 text-2xl">Click on your favorite team to learn more!</h2>
+            </div>
             <div className="flex justify-center">
                 <Teams
                     wins = {winsArray}
                     losses = {lossArray}
+                    ranking = {rankingArray}
                     teamName = {teamNamesArray}
                     locationName = {locationNameArray}
+                    ot = {otArray}
+                    gf = {gfArray}
+                    ga = {gaArray}
+                    conferences = {conferencesArray}
                 />
             </div>
             <div className="pt-10 lg:pt-10"></div>

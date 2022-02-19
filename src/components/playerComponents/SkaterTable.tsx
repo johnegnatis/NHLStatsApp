@@ -1,14 +1,18 @@
-import React from "react"
 import { useSortBy, useTable } from "react-table"
+import React from "react"
 
-//@ts-ignore
-export default function GoalieTable({data }) {
+ //@ts-ignore
+ export default function SkaterTable({data }) {
     // Use the state and functions returned from useTable to build your UI
     const columns = React.useMemo(
         () => [
           {
             Header: '\n',
             columns: [
+              {
+                Header: 'POS',
+                accessor: 'position',
+              },
               {
                 Header: 'Name',
                 accessor: 'name',
@@ -21,29 +25,28 @@ export default function GoalieTable({data }) {
                 ))
               },
               {
-                Header: 'Saves',
-                accessor: 'saves',
+                Header: '+/-',
+                accessor: 'plusMinus',
+                sortType: 'basic'
               },
               {
-                Header: 'GAA',
-                accessor: 'gaa',
+                Header: 'Goals',
+                accessor: 'goals',
               },
               {
-                Header: 'SV %',
-                accessor: 'svPercent',
-                Cell: ((tableProps: { row: { original: { svPercent:number } } }) => (
-                  <h3>{tableProps.row.original.svPercent+"%"}</h3>
-                ))
+                Header: 'Assists',
+                accessor: 'assists'
               },
               {
-                Header: 'Shutouts',
-                accessor: 'shutouts',
+                Header: 'Hits',
+                accessor: 'hits',
               },
             ],
           } 
         ],
         []
       )
+
     const {
         getTableProps,
         getTableBodyProps,
@@ -58,11 +61,11 @@ export default function GoalieTable({data }) {
           //@ts-ignore
           sortBy: [
             {
-              id: 'saves',
+              id: 'plusMinus',
               desc: true,
             }
-          ]
-        }
+          ],
+        },
       },
     useSortBy)
   
@@ -72,7 +75,7 @@ export default function GoalieTable({data }) {
     // }
   
     return (
-      <table {...getTableProps()} className=" bg-black w-full max-w-3xl border-4 border-gray-700">
+      <table {...getTableProps()} className="bg-black w-full max-w-3xl border-4 border-gray-700">
       <thead>
       {headerGroups.map(headerGroup => (
           <tr className="bg-gray-700" {...headerGroup.getHeaderGroupProps()}>
@@ -107,6 +110,6 @@ export default function GoalieTable({data }) {
       })}
       </tbody>
   </table>
-  )
+  ) 
   }
   

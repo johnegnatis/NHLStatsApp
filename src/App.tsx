@@ -27,7 +27,8 @@ export function App() {
         return (
             <div className='relative min-h-screen font-mainfont'>
                 <Outlet/>  
-                <footer className='text-white bg-black h-50 text-center px-10 xl:px-20 py-5'>
+                <div className='pb-24'/>
+                <footer className='absolute bottom-0 text-white bg-black h-50 text-center h-24 px-10 xl:px-20 py-5'>
                     <span>{data.copyright}</span>
                 </footer>
             </div>

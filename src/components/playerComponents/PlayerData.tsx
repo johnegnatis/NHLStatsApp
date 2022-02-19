@@ -1,27 +1,34 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import { website, singleSeasonModifier } from "../data/apiWebsite"
-import PlayerTable from "./PlayerTable";
+import SkaterTable from "./SkaterTable";
 import GoalieTable from "./TableGoalie"
 
 interface PlayerProps {
   link : string;
 }
 
-interface PlayerRow {
+interface SkaterRow {
   name: string;
   goals: number;
   assists: number;
   hits: number;
+  position: string;
+  plusMinus: number;
+  number: number;
 }
 interface GoalieRow {
   name: string;
   saves: number;
+  number: number;
+  gaa: number;
+  svPercent: number;
+  shutouts: number;
 }
 
 export const PlayerData: React.FC<PlayerProps> = (props): JSX.Element =>  {
 
-  const [playerData, setPlayerData] = useState <PlayerRow[]> ([]);
+  const [playerData, setPlayerData] = useState <SkaterRow[]> ([]);
   const [goalieData, setGoalieData] = useState <GoalieRow[]> ([]);
   const [loading, setLoading] = useState <boolean> (false);
   const [error, setError] = useState(null);
@@ -37,20 +44,22 @@ export const PlayerData: React.FC<PlayerProps> = (props): JSX.Element =>  {
             playerIDArray.push(axios.get(website + player.person.link + singleSeasonModifier))
           })
           let playerResponses: any[] = await axios.all(playerIDArray);
-          let thePlayerData: PlayerRow[] = [];
+          let thePlayerData: SkaterRow[] = [];
           let theGoalieData: GoalieRow[] = [];
           for(let x = 0; x < playerResponses.length; x++){
-            console.log(x);
             //@ts-ignore
             if(playerResponses[x].data.stats[0].splits.length > 0){
 
               if(teamResponse.data.roster[x].position.code !== 'G')
               {
                 thePlayerData.push({
-                name: teamResponse.data.roster[x].person.fullName,
-                goals: playerResponses[x].data.stats[0].splits[0].stat.goals,
-                assists: playerResponses[x].data.stats[0].splits[0].stat.assists,
-                hits: playerResponses[x].data.stats[0].splits[0].stat.hits,
+                  name: teamResponse.data.roster[x].person.fullName,
+                  position: teamResponse.data.roster[x].position.code,
+                  number: teamResponse.data.roster[x].jerseyNumber,
+                  goals: playerResponses[x].data.stats[0].splits[0].stat.goals,
+                  assists: playerResponses[x].data.stats[0].splits[0].stat.assists,
+                  hits: playerResponses[x].data.stats[0].splits[0].stat.hits,
+                  plusMinus: playerResponses[x].data.stats[0].splits[0].stat.plusMinus,
                 })
               }
               else
@@ -58,7 +67,11 @@ export const PlayerData: React.FC<PlayerProps> = (props): JSX.Element =>  {
                 theGoalieData.push({
                   name: teamResponse.data.roster[x].person.fullName,
                   saves: playerResponses[x].data.stats[0].splits[0].stat.saves,
-                  })
+                  number: teamResponse.data.roster[x].jerseyNumber,
+                  gaa: playerResponses[x].data.stats[0].splits[0].stat.goalAgainstAverage.toFixed(3),
+                  svPercent: playerResponses[x].data.stats[0].splits[0].stat.evenStrengthSavePercentage.toFixed(3),
+                  shutouts: playerResponses[x].data.stats[0].splits[0].stat.shutouts
+                })
               }
             }
           }
@@ -86,13 +99,20 @@ export const PlayerData: React.FC<PlayerProps> = (props): JSX.Element =>  {
     if(playerData && goalieData)
     {
       return (
-        <div className=" max-w-screen-lg w-full">
-          <div className="w-full">
-            <PlayerTable data={playerData} />
+        <div className=" max-w-screen-lg block w-full">
+          <div className="flex justify-center">
+            <h2 className="font-bold text-2xl mt-10 mb-2 p-2 bg-black border-2 shadow-lg rounded-lg w-fit h-fit">Skaters</h2>
+          </div>
+          <div className="w-full flex justify-center">
+            <SkaterTable data={playerData} />
           </div>
           <br></br>
-          
-          <GoalieTable data = {goalieData}/>
+          <div className="flex justify-center">
+            <h2 className="font-bold text-2xl mt-10 mb-2 p-2 bg-black border-2 shadow-lg rounded-lg w-fit h-fit">Goalies</h2>
+          </div>
+          <div className="w-full flex justify-center">
+            <GoalieTable data = {goalieData}/>
+          </div>
         
         </div>
       )

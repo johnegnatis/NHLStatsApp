@@ -4,9 +4,6 @@ module.exports = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'mainbg': "url('images/background.jpg')",
-      },
       fontFamily: {
         'mainfont': ['"Roboto Mono"', 'monospace']
       }

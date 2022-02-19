@@ -44,7 +44,7 @@ export const TeamDisplay = (): JSX.Element => {
         let api: string = `${website}/api/v1/teams/${data.teams[x].id}/roster`;    
         return (
             //data.team[x] to get current team
-            <section className= "bg-mainbg bg-fixed bg-auto md:bg-cover text-white lg:px-36 xl:px-64 text-center p-20">
+            <section className= " min-h-screen  bg-gray-400 bg-fixed bg-auto md:bg-cover text-white lg:px-36 xl:px-64 text-center p-20">
                 <Link 
                     to="/"
                     className="hover:bg-blue-500 absolute left-0 top-0 p-2 m-2 border bg-black"
@@ -53,7 +53,7 @@ export const TeamDisplay = (): JSX.Element => {
                     Return to home
                 </Link>
                 <div className="flex justify-center object-scale-down">
-                    <h1 className="text-5xl text-left p-5">{data.teams[x].teamName}</h1>
+                    <h1 className=" text-gray-900 text-8xl font-extrabold text-left p-5">{data.teams[x].teamName}</h1>
                 </div>
 
                 <div className="flex justify-center object-scale-down">
