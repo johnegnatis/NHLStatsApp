@@ -51,7 +51,7 @@ export function Body() {
                 <h1 className="font-bold text-7xl">NHL Stat Tracker</h1>
                 <h2 className="m-2 pb-10 text-2xl">Click on your favorite team to learn more!</h2>
             </div>
-            <div className="flex justify-center">
+            <div className=" min-w-table overflow-x-auto flex justify-center">
                 <Teams
                     wins = {winsArray}
                     losses = {lossArray}

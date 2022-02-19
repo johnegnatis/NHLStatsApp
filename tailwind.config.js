@@ -6,6 +6,9 @@ module.exports = {
     extend: {
       fontFamily: {
         'mainfont': ['"Roboto Mono"', 'monospace']
+      },
+      minWidth: {
+        table: '800px',
       }
     },
   },

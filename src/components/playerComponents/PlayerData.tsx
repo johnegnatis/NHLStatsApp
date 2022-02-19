@@ -103,14 +103,14 @@ export const PlayerData: React.FC<PlayerProps> = (props): JSX.Element =>  {
           <div className="flex justify-center">
             <h2 className="font-bold text-2xl mt-10 mb-2 p-2 bg-black border-2 shadow-lg rounded-lg w-fit h-fit">Skaters</h2>
           </div>
-          <div className="w-full flex justify-center">
+          <div className="min-w-table overflow-x-auto flex justify-center">
             <SkaterTable data={playerData} />
           </div>
           <br></br>
           <div className="flex justify-center">
             <h2 className="font-bold text-2xl mt-10 mb-2 p-2 bg-black border-2 shadow-lg rounded-lg w-fit h-fit">Goalies</h2>
           </div>
-          <div className="w-full flex justify-center">
+          <div className=" min-w-table overflow-x-auto flex justify-center">
             <GoalieTable data = {goalieData}/>
           </div>
         

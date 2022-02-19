@@ -25,7 +25,7 @@ export function App() {
 
     if(data)
         return (
-            <div className='relative min-h-screen font-mainfont'>
+            <div className='relative min-h-screen font-mainfont bg-gray-400'>
                 <Outlet/>  
                 <div className='pb-24'/>
                 <footer className='absolute bottom-0 text-white bg-black h-50 text-center h-24 px-10 xl:px-20 py-5'>

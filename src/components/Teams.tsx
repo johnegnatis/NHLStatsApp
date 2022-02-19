@@ -60,12 +60,15 @@ export const Teams: React.FC<TeamTableProps> = (props): JSX.Element => {
                 )
               },
               {
-                Header: 'Wins',
+                Header: 'W',
                 accessor: 'wins',
               },
               {
-                Header: 'Losses',
-                accessor: 'losses'
+                Header: 'L',
+                accessor: 'losses',
+                // Cell: ( tableProps: {row: {original: {losses: number }; }; }) => (
+                //   <p className="px-5">{tableProps.row.original.losses}</p>
+                // )
               },
               {
                 Header: 'OT',
@@ -74,10 +77,16 @@ export const Teams: React.FC<TeamTableProps> = (props): JSX.Element => {
               {
                 Header: 'GF',
                 accessor: 'gf',
+                // Cell: ( tableProps: {row: {original: {gf: number }; }; }) => (
+                //   <p className="px-5">{tableProps.row.original.gf}</p>
+                // )
               },
               {
                 Header: 'GA',
                 accessor: 'ga',
+                Cell: ( tableProps: {row: {original: {gf: number }; }; }) => (
+                  <p className="pr-5">{tableProps.row.original.gf}</p>
+                )
               },
             ],
           } 
@@ -137,7 +146,8 @@ function Table({ columns, data }) {
     }
 
     return (
-        <table {...getTableProps()} className="bg-black w-full max-w-3xl border-4 border-gray-700">
+        <table {...getTableProps()} 
+        className="bg-black border-4 border-gray-700 overflow-x-hidden">
             <thead>
             {headerGroups.map(headerGroup => (
                 <tr className="bg-gray-700" {...headerGroup.getHeaderGroupProps()}>
@@ -165,7 +175,7 @@ function Table({ columns, data }) {
                   onClick={() => routeChange(row.original.teamName)}
                 >
                     {row.cells.map(cell => {
-                    return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                    return <td className="pl-5" {...cell.getCellProps()}>{cell.render('Cell')}</td>
                     })}
                 </tr>
                 )
