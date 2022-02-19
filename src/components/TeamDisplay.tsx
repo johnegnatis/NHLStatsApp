@@ -40,7 +40,8 @@ export const TeamDisplay = (): JSX.Element => {
     }
     
     if(data)
-    {    
+    {
+        let api: string = `${website}/api/v1/teams/${data.teams[x].id}/roster`;    
         return (
             //data.team[x] to get current team
             <section className= "bg-mainbg bg-fixed bg-auto md:bg-cover text-white lg:px-36 xl:px-64 text-center p-20">
@@ -61,7 +62,7 @@ export const TeamDisplay = (): JSX.Element => {
 
                 <div className="flex justify-center object-scale-down"> 
                     <PlayerData
-                        link = {`${website}/api/v1/teams/${data.teams[x].id}/roster`}
+                        link = {api}
                     />
                 </div>    
 
