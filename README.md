@@ -6,7 +6,7 @@
 
 ### Greeting all hockey and programming fans!
 
-To see the app, clone the repo. and run the app with 'npm start'.
+Link to the website: *https://chrisegnatis.github.io/NHLStatsApp/*
 
 Project created with *Reactjs*, implements many API calls to fetch important data, utilizes *TypeScript* for code security and *Tailwind CSS* for styling.
 Other packages such as *React Table*, *React Popup*, and *Axios* were greatfully used to create the application.
