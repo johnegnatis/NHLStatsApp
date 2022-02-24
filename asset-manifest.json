@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/NHLStatsApp/static/css/main.e2f8cdd1.css",
+    "main.js": "/NHLStatsApp/static/js/main.5ee5ef8d.js",
+    "index.html": "/NHLStatsApp/index.html",
+    "main.e2f8cdd1.css.map": "/NHLStatsApp/static/css/main.e2f8cdd1.css.map",
+    "main.5ee5ef8d.js.map": "/NHLStatsApp/static/js/main.5ee5ef8d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e2f8cdd1.css",
+    "static/js/main.5ee5ef8d.js"
+  ]
+}
