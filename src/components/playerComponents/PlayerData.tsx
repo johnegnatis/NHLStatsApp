@@ -9,6 +9,7 @@ interface PlayerProps {
 }
 
 interface SkaterRow {
+  playerID: number;
   name: string;
   goals: number;
   assists: number;
@@ -16,14 +17,21 @@ interface SkaterRow {
   position: string;
   plusMinus: number;
   number: number;
+  age: number;
+  height: string;
+  weight: number;
 }
 interface GoalieRow {
+  playerID: number;
   name: string;
   saves: number;
   number: number;
   gaa: number;
   svPercent: number;
   shutouts: number;
+  age: number;
+  height: string;
+  weight: number;
 }
 
 export const PlayerData: React.FC<PlayerProps> = (props): JSX.Element =>  {
@@ -38,12 +46,15 @@ export const PlayerData: React.FC<PlayerProps> = (props): JSX.Element =>  {
       try {
         (async () => {
           const playerIDArray : any[] = [];
+          const playerDataArray: any[] = [];
           let teamResponse: any = await axios.get(props.link);
           //@ts-ignore
           (teamResponse.data.roster).forEach((player) => {
             playerIDArray.push(axios.get(website + player.person.link + singleSeasonModifier))
+            playerDataArray.push(axios.get(website + player.person.link))
           })
           let playerResponses: any[] = await axios.all(playerIDArray);
+          let playerDataResponses: any[] = await axios.all(playerDataArray);
           let thePlayerData: SkaterRow[] = [];
           let theGoalieData: GoalieRow[] = [];
           for(let x = 0; x < playerResponses.length; x++){
@@ -52,8 +63,14 @@ export const PlayerData: React.FC<PlayerProps> = (props): JSX.Element =>  {
 
               if(teamResponse.data.roster[x].position.code !== 'G')
               {
+                console.log(playerDataResponses[x])
+
                 thePlayerData.push({
+                  playerID: teamResponse.data.roster[x].person.id,
                   name: teamResponse.data.roster[x].person.fullName,
+                  age: playerDataResponses[x].data.people[0].currentAge,
+                  height: playerDataResponses[x].data.people[0].height,
+                  weight: playerDataResponses[x].data.people[0].weight,
                   position: teamResponse.data.roster[x].position.code,
                   number: teamResponse.data.roster[x].jerseyNumber,
                   goals: playerResponses[x].data.stats[0].splits[0].stat.goals,
@@ -65,7 +82,11 @@ export const PlayerData: React.FC<PlayerProps> = (props): JSX.Element =>  {
               else
               {
                 theGoalieData.push({
+                  playerID: teamResponse.data.roster[x].person.id,
                   name: teamResponse.data.roster[x].person.fullName,
+                  age: playerDataResponses[x].data.people[0].currentAge,
+                  height: playerDataResponses[x].data.people[0].height,
+                  weight: playerDataResponses[x].data.people[0].weight,
                   saves: playerResponses[x].data.stats[0].splits[0].stat.saves,
                   number: teamResponse.data.roster[x].jerseyNumber,
                   gaa: playerResponses[x].data.stats[0].splits[0].stat.goalAgainstAverage.toFixed(3),
@@ -89,7 +110,7 @@ export const PlayerData: React.FC<PlayerProps> = (props): JSX.Element =>  {
     if(loading)
     {
       return (
-        <div>Loading...</div>
+        <h1 className="text-4xl pt-10">Loading...</h1>
       )
     }
     if(error)

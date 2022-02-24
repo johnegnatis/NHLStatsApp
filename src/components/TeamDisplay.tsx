@@ -53,7 +53,10 @@ export const TeamDisplay = (): JSX.Element => {
                     Return to home
                 </Link>
                 <div className="flex justify-center object-scale-down">
-                    <h1 className=" text-gray-900 text-8xl font-extrabold text-left p-5">{data.teams[x].teamName}</h1>
+                    <h1 className=" text-gray-900 text-8xl font-extrabold text-left pb-0 p-5">{data.teams[x].locationName}</h1>
+                </div>
+                <div className="flex justify-center object-scale-down">
+                    <h1 className=" text-gray-900 text-8xl font-extrabold text-left pt-0 p-5">{data.teams[x].teamName}</h1>
                 </div>
 
                 <div className="flex justify-center object-scale-down">

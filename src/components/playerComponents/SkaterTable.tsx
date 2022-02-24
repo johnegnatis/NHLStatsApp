@@ -1,8 +1,10 @@
 import { useSortBy, useTable } from "react-table"
 import React from "react"
+import { PlayerPopup } from "./PlayerPopup";
+import { getPortrait } from "../data/apiWebsite";
 
  //@ts-ignore
- export default function SkaterTable({data }) {
+ export default function SkaterTable({ data }) {
     // Use the state and functions returned from useTable to build your UI
     const columns = React.useMemo(
         () => [
@@ -16,11 +18,20 @@ import React from "react"
               {
                 Header: 'Name',
                 accessor: 'name',
-                Cell: ((tableProps: { row: { original: { name: string; number: string } } }) => (
+                Cell: ((tableProps: { row: { original: { name: string; number: string; playerID: number; age: number; height: string; weight: number } } }) => (
                   <div className="flex">
                     <div className="flex justify-left">
                     </div>
-                    <h3 className="pl-2 text-right">{"#"+ (tableProps.row.original.number) + " " + tableProps.row.original.name}</h3>
+                    <h3 className="pl-2 text-right">
+                      <PlayerPopup 
+                        name = {"#"+ (tableProps.row.original.number) + " " + tableProps.row.original.name} 
+                        src = {`${getPortrait}${tableProps.row.original.playerID}.jpg`}
+                        age = {tableProps.row.original.age}
+                        height = {tableProps.row.original.height}
+                        weight = {tableProps.row.original.weight}
+
+                      />
+                    </h3>
                   </div>
                 ))
               },
@@ -68,12 +79,7 @@ import React from "react"
         },
       },
     useSortBy)
-  
-    // let navigate = useNavigate(); 
-    // const routeChange = (path:string) =>{ 
-    //     navigate(path)
-    // }
-  
+
     return (
       <table {...getTableProps()} className="bg-black w-full max-w-3xl border-4 border-gray-700">
       <thead>
@@ -98,10 +104,7 @@ import React from "react"
       {rows.map((row, i) => {
           prepareRow(row)
           return (
-          <tr className=" hover:text-blue-500 border-gray-700 border-4" {...row.getRowProps({})}
-            //@ts-ignore
-            onClick={() => routeChange(row.original.teamName)}
-          >
+          <tr className="border-gray-700 border-4" {...row.getRowProps({})}          >
               {row.cells.map(cell => {
               return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
               })}

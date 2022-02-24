@@ -4,6 +4,7 @@ const statModifier : string = '?expand=team.stats';
 const rosterModifier : string  = '?expand=team.roster';
 const singleSeasonModifier : string = '/stats?stats=statsSingleSeason'
 const getPlayer: string = "/api/v1/people/"
+const getPortrait: string = "http://nhl.bamcontent.com/images/headshots/current/168x168/"; //followed by {playerID}.jpg
 
 export {
     website,
@@ -11,4 +12,5 @@ export {
     rosterModifier,
     singleSeasonModifier,
     getPlayer,
+    getPortrait,
 }
