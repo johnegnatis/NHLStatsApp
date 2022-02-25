@@ -3,16 +3,16 @@ import ReactDOM from 'react-dom';
 import { App } from './App';
 import { Body } from './components/Body';
 import './index.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import {BrowserRouter, Routes, Route } from 'react-router-dom';
 import { TeamDisplay } from './components/TeamDisplay';
 
 ReactDOM.render(
     <BrowserRouter>
       <React.StrictMode>
         <Routes>
-          <Route path="/" element={<App />}>
+          <Route path="/NHLStatsApp/" element={<App />}>
             <Route index element= {<Body/>}/>
-            <Route path =":teamName" element = {<TeamDisplay/> } />
+            <Route path ="/NHLStatsApp/:teamName" element = {<TeamDisplay/> } />
             <Route
               path="*"
               element={

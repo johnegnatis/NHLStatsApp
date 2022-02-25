@@ -63,8 +63,6 @@ export const PlayerData: React.FC<PlayerProps> = (props): JSX.Element =>  {
 
               if(teamResponse.data.roster[x].position.code !== 'G')
               {
-                console.log(playerDataResponses[x])
-
                 thePlayerData.push({
                   playerID: teamResponse.data.roster[x].person.id,
                   name: teamResponse.data.roster[x].person.fullName,
