@@ -1,6 +1,6 @@
 import { useSortBy, useTable } from "react-table"
 import React from "react"
-import { PlayerPopup } from "./PlayerPopup";
+import { PlayerPopup } from "./PlayerInfo";
 import { getPortrait } from "../data/apiWebsite";
 
  //@ts-ignore
@@ -81,12 +81,12 @@ import { getPortrait } from "../data/apiWebsite";
     useSortBy)
 
     return (
-      <table {...getTableProps()} className="bg-black w-full max-w-3xl border-4 border-gray-700">
+      <table {...getTableProps()} className="bg-black border-4 border-gray-700 w-full">
       <thead>
       {headerGroups.map(headerGroup => (
           <tr className="bg-gray-700" {...headerGroup.getHeaderGroupProps()}>
           {headerGroup.headers.map((column : (any)) => (
-              <th className= "hover:text-blue-500 p-1 text-xl font-bold" {...column.getHeaderProps(column.getSortByToggleProps())}>
+              <th className= "hover:text-blue-500 font-bold" {...column.getHeaderProps(column.getSortByToggleProps())}>
               {column.render('Header')}
               <span>
                 {column.isSorted
@@ -104,7 +104,7 @@ import { getPortrait } from "../data/apiWebsite";
       {rows.map((row, i) => {
           prepareRow(row)
           return (
-          <tr className="border-gray-700 border-4" {...row.getRowProps({})}          >
+          <tr className=" h-10 hover:text-blue-500 border-gray-700 border-4" {...row.getRowProps({})}          >
               {row.cells.map(cell => {
               return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
               })}

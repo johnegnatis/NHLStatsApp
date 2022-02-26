@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { Teams } from "./Teams";
+import { Teams } from "./TableNHL";
 import { website } from "./data/apiWebsite";
 
 export function Body() {
@@ -48,23 +48,25 @@ export function Body() {
     return(
         <section className="bg-gray-400 bg-fixed bg-auto md:bg-cover text-white lg:px-24 xl:px-52 text-center pt-10" >
             <div className="text-black font-extrabold">
-                <h1 className="font-bold text-7xl">NHL Stat Tracker</h1>
-                <h2 className="m-2 pb-10 text-2xl">Click on your favorite team to learn more!</h2>
+                <h1 className="font-bold text-4xl xs:text-5xl sm:text-6xl md:text-7xl">NHL STATS APP</h1>
+                <h2 className="m-2 pb-10 text-xl md:text-2xl">Click on your favorite team!</h2>
             </div>
-            <div className=" min-w-table overflow-x-auto flex justify-center">
-                <Teams
-                    wins = {winsArray}
-                    losses = {lossArray}
-                    ranking = {rankingArray}
-                    teamName = {teamNamesArray}
-                    locationName = {locationNameArray}
-                    ot = {otArray}
-                    gf = {gfArray}
-                    ga = {gaArray}
-                    conferences = {conferencesArray}
-                />
+            <div className="flex justify-center">
+                <div className="w-full md:w-4/5">
+                    <Teams
+                        wins = {winsArray}
+                        losses = {lossArray}
+                        ranking = {rankingArray}
+                        teamName = {teamNamesArray}
+                        locationName = {locationNameArray}
+                        ot = {otArray}
+                        gf = {gfArray}
+                        ga = {gaArray}
+                        conferences = {conferencesArray}
+                    />
+                </div>
             </div>
-            <div className="pt-10 lg:pt-10"></div>
+            <div className="pt-10"></div>
         </section> 
     )
 }

@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { App } from './App';
-import { Body } from './components/Body';
+import { App } from './Outlet';
+import { Body } from './components/IndexNHL';
 import './index.css';
 import {BrowserRouter, Routes, Route } from 'react-router-dom';
-import { TeamDisplay } from './components/TeamDisplay';
+import { TeamDisplay } from './components/IndexTeam';
 
 ReactDOM.render(
     <BrowserRouter>

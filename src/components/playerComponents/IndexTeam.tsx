@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import { website, singleSeasonModifier } from "../data/apiWebsite"
-import SkaterTable from "./SkaterTable";
+import SkaterTable from "./TableSkater";
 import GoalieTable from "./TableGoalie"
 
 interface PlayerProps {
@@ -122,15 +122,18 @@ export const PlayerData: React.FC<PlayerProps> = (props): JSX.Element =>  {
           <div className="flex justify-center">
             <h2 className="font-bold text-2xl mt-10 mb-2 p-2 bg-black border-2 shadow-lg rounded-lg w-fit h-fit">Skaters</h2>
           </div>
-          <div className="min-w-table overflow-x-auto flex justify-center">
-            <SkaterTable data={playerData} />
+          <div className="flex justify-center">
+                <div className="w-full md:w-4/5">            
+                  <SkaterTable data={playerData} />
+            </div>
           </div>
-          <br></br>
           <div className="flex justify-center">
             <h2 className="font-bold text-2xl mt-10 mb-2 p-2 bg-black border-2 shadow-lg rounded-lg w-fit h-fit">Goalies</h2>
           </div>
-          <div className=" min-w-table overflow-x-auto flex justify-center">
-            <GoalieTable data = {goalieData}/>
+          <div className="flex justify-center pb-10">
+                <div className="w-full md:w-4/5">            
+                  <GoalieTable data={goalieData} />
+            </div>
           </div>
         
         </div>

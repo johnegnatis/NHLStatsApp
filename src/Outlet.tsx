@@ -25,10 +25,10 @@ export function App() {
 
     if(data)
         return (
-            <div className='relative min-h-screen font-mainfont bg-gray-400'>
+            <div className='relative min-h-screen font-mainfont bg-gray-400 lg:text-xl md:text-base sm:text-sm text-xs'>
                 <Outlet/>  
                 <div className='pb-24'/>
-                <footer className='absolute bottom-0 text-white bg-black h-50 text-center h-24 px-10 xl:px-20 py-5'>
+                <footer className='absolute bottom-0 text-white bg-black text-center h-24 px-10 xl:px-20 py-5 w-screen'>
                     <span>{data.copyright}</span>
                 </footer>
             </div>

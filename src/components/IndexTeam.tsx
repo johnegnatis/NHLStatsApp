@@ -3,11 +3,11 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { thumbnails } from "./data/thumbnails";
 import {website, statModifier} from "./data/apiWebsite"
-import { PlayerData } from "./playerComponents/PlayerData";
+import { PlayerData } from "./playerComponents/IndexTeam";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Popup from "reactjs-popup";
-import "./playerComponents/animation.css";
+import "./../index.css";
 import 'reactjs-popup/dist/index.css';
 
 
@@ -27,7 +27,6 @@ export const TeamDisplay = (): JSX.Element => {
                 let i: number = 0;
                 for(i = 0; i < teamAPI.data.teams.length; i++)
                 {
-                    console.log(teamAPI.data.teams[i].teamName + " " + params.teamName)
                     //find the api team
                     if(teamAPI.data.teams[i].teamName === params.teamName)
                     {
@@ -53,18 +52,20 @@ export const TeamDisplay = (): JSX.Element => {
     {
         let api: string = `${website}/api/v1/teams/${data.id}/roster`;    
         return (
-            <section className= "bg-gray-400 text-white text-center p-20 ">
-                <Link 
-                    to="/NHLStatsApp/"
-                    className="hover:bg-blue-500 absolute left-0 top-0 p-2 m-2 border bg-black"
-                >
-                    Return to home
-                </Link>
-                <div className="flex justify-center object-scale-down">
-                    <h1 className=" text-gray-900 text-8xl font-extrabold text-left pb-0 p-5">{data.locationName}</h1>
+            <section className= "bg-gray-400 text-white text-center ">
+                <div className="flex justify-start">
+                    <Link
+                        to="/NHLStatsApp/"
+                        className="hover:bg-blue-500 p-1 m-1 lg:p-2 lg:m-2 border bg-black text-xs lg:text-lg 2xl:text-3xl"
+                    >
+                        Return to home
+                    </Link>
                 </div>
                 <div className="flex justify-center object-scale-down">
-                    <h1 className=" text-gray-900 text-8xl font-extrabold text-left pt-0 p-5">{data.teamName}</h1>
+                    <h1 className=" text-gray-900 text-4xl xs:text-5xl sm:text-6xl md:text-7xl font-extrabold text-left pb-0 p-5">{data.locationName}</h1>
+                </div>
+                <div className="flex justify-center object-scale-down">
+                    <h1 className=" text-gray-900 text-4xl xs:text-5xl sm:text-6xl md:text-7xl font-extrabold text-left pt-0 p-5">{data.teamName}</h1>
                 </div>
 
                 <div className="flex justify-center object-scale-down">
@@ -72,16 +73,16 @@ export const TeamDisplay = (): JSX.Element => {
                 </div>
                 <br></br>
                 <div className="flex justify-center">
-                    <Popup trigger={<button className="text-blue-700 underline">About player photos</button>} position="center center">
+                    <Popup trigger={<button className="text-blue-700 underline">About player photos</button>} position="bottom center">
                         <div className="bg-black text-white p-2">
                             <span>The website that fetches the player portraits is not secure in most browsers. If you wish to see the player portraits in your browser, click the link below and give your internet browser permission to bypass the warning.</span>
                             <br/>
-                            <a href="https://nhl.bamcontent.com" className="text-blue-500">Click here to be redirected</a>
+                            <a href="https://nhl.bamcontent.com" target="_blank" className="text-blue-500">Click here to be redirected</a>
                         </div>
                     </Popup>
                 </div>
 
-                <div className="flex justify-center object-scale-down"> 
+                <div className="flex justify-center"> 
                     <PlayerData
                         link = {api}
                     />

@@ -54,7 +54,7 @@ export const Teams: React.FC<TeamTableProps> = (props): JSX.Element => {
                           alt='logo'
                         />
                       </div>
-                      <h3 className="pl-2">{tableProps.row.original.locationName + " " + tableProps.row.original.teamName}</h3>
+                      <h3 className="pl-1">{tableProps.row.original.locationName + " " + tableProps.row.original.teamName}</h3>
                     </div>
                   </div>
                 )
@@ -74,20 +74,20 @@ export const Teams: React.FC<TeamTableProps> = (props): JSX.Element => {
                 Header: 'OT',
                 accessor: 'ot',
               },
-              {
-                Header: 'GF',
-                accessor: 'gf',
-                // Cell: ( tableProps: {row: {original: {gf: number }; }; }) => (
-                //   <p className="px-5">{tableProps.row.original.gf}</p>
-                // )
-              },
-              {
-                Header: 'GA',
-                accessor: 'ga',
-                Cell: ( tableProps: {row: {original: {gf: number }; }; }) => (
-                  <p className="pr-5">{tableProps.row.original.gf}</p>
-                )
-              },
+              // {
+              //   Header: 'GF',
+              //   accessor: 'gf',
+              //   // Cell: ( tableProps: {row: {original: {gf: number }; }; }) => (
+              //   //   <p className="">{tableProps.row.original.gf}</p>
+              //   // ),
+              // },
+              // {
+              //   Header: 'GA',
+              //   accessor: 'ga',
+              //   // Cell: ( tableProps: {row: {original: {gf: number }; }; }) => (
+              //   //   <p className="">{tableProps.row.original.gf}</p>
+              //   // ),
+              // },
             ],
           } 
         ],
@@ -124,7 +124,7 @@ function Table({ columns, data }) {
         headerGroups,
         rows,
         prepareRow,
-    } = useTable(
+        } = useTable(
       {
         columns,
         data,
@@ -145,14 +145,15 @@ function Table({ columns, data }) {
         navigate(path)
     }
 
+
     return (
         <table {...getTableProps()} 
-        className="bg-black border-4 border-gray-700 overflow-x-hidden">
+        className="bg-black border-4 border-gray-700 w-full">
             <thead>
             {headerGroups.map(headerGroup => (
                 <tr className="bg-gray-700" {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column : (any)) => (
-                    <th className= "hover:text-blue-500 p-1 text-xl font-bold" {...column.getHeaderProps(column.getSortByToggleProps())}>
+                    <th className= "hover:text-blue-500 font-bold" {...column.getHeaderProps(column.getSortByToggleProps())}>
                     {column.render('Header')}
                     <span>
                       {column.isSorted
@@ -175,7 +176,7 @@ function Table({ columns, data }) {
                   onClick={() => routeChange(row.original.teamName)}
                 >
                     {row.cells.map(cell => {
-                    return <td className="pl-5" {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                    return <td className="" {...cell.getCellProps()}>{cell.render('Cell')}</td>
                     })}
                 </tr>
                 )
