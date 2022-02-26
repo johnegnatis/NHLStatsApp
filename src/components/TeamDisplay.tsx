@@ -6,6 +6,9 @@ import {website, statModifier} from "./data/apiWebsite"
 import { PlayerData } from "./playerComponents/PlayerData";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Popup from "reactjs-popup";
+import "./playerComponents/animation.css";
+import 'reactjs-popup/dist/index.css';
 
 
 export const TeamDisplay = (): JSX.Element => {
@@ -50,7 +53,7 @@ export const TeamDisplay = (): JSX.Element => {
     {
         let api: string = `${website}/api/v1/teams/${data.id}/roster`;    
         return (
-            <section className= " min-h-screen  bg-gray-400 bg-fixed bg-auto md:bg-cover text-white lg:px-36 xl:px-64 text-center p-20">
+            <section className= "bg-gray-400 text-white text-center p-20 ">
                 <Link 
                     to="/NHLStatsApp/"
                     className="hover:bg-blue-500 absolute left-0 top-0 p-2 m-2 border bg-black"
@@ -66,6 +69,16 @@ export const TeamDisplay = (): JSX.Element => {
 
                 <div className="flex justify-center object-scale-down">
                     <img alt ="teamlogo" src={thumbnails[x]} width="100"></img>
+                </div>
+                <br></br>
+                <div className="flex justify-center">
+                    <Popup trigger={<button className="text-blue-700 underline">About player photos</button>} position="center center">
+                        <div className="bg-black text-white p-2">
+                            <span>The website that fetches the player portraits is not secure in most browsers. If you wish to see the player portraits in your browser, click the link below and give your internet browser permission to bypass the warning.</span>
+                            <br/>
+                            <a href="https://nhl.bamcontent.com" className="text-blue-500">Click here to be redirected</a>
+                        </div>
+                    </Popup>
                 </div>
 
                 <div className="flex justify-center object-scale-down"> 
