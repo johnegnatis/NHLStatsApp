@@ -57,39 +57,41 @@ export const PlayerData: React.FC<PlayerProps> = (props): JSX.Element =>  {
           let playerDataResponses: any[] = await axios.all(playerDataArray);
           let thePlayerData: SkaterRow[] = [];
           let theGoalieData: GoalieRow[] = [];
+          console.log(teamResponse);
           for(let x = 0; x < playerResponses.length; x++){
-            //@ts-ignore
-            if(playerResponses[x].data.stats[0].splits.length > 0){
+            if(playerResponses[x].data.stats[0]){
 
               if(teamResponse.data.roster[x].position.code !== 'G')
               {
+                //@ts-ignore
                 thePlayerData.push({
-                  playerID: teamResponse.data.roster[x].person.id,
-                  name: teamResponse.data.roster[x].person.fullName,
-                  age: playerDataResponses[x].data.people[0].currentAge,
-                  height: playerDataResponses[x].data.people[0].height,
-                  weight: playerDataResponses[x].data.people[0].weight,
-                  position: teamResponse.data.roster[x].position.code,
-                  number: teamResponse.data.roster[x].jerseyNumber,
-                  goals: playerResponses[x].data.stats[0].splits[0].stat.goals,
-                  assists: playerResponses[x].data.stats[0].splits[0].stat.assists,
-                  hits: playerResponses[x].data.stats[0].splits[0].stat.hits,
-                  plusMinus: playerResponses[x].data.stats[0].splits[0].stat.plusMinus,
+                  playerID: teamResponse.data.roster[x].person.id || 0,
+                  name: teamResponse.data.roster[x].person.fullName || 0,
+                  age: playerDataResponses[x].data.people[0].currentAge || 0,
+                  height: playerDataResponses[x].data.people[0].height || 0,
+                  weight: playerDataResponses[x].data.people[0].weight || 0,
+                  position: teamResponse.data.roster[x].position.code || 0,
+                  number: teamResponse.data.roster[x].jerseyNumber || 0,
+                  goals: playerResponses[x].data.stats[0].splits[0]?.stat?.goals || 0,
+                  assists: playerResponses[x].data.stats[0].splits[0]?.stat?.assists || 0,
+                  hits: playerResponses[x].data.stats[0].splits[0]?.stat?.hits || 0,
+                  plusMinus: playerResponses[x].data.stats[0].splits[0]?.stat?.plusMinus || 0,
                 })
               }
               else
               {
+                //@ts-ignore
                 theGoalieData.push({
-                  playerID: teamResponse.data.roster[x].person.id,
-                  name: teamResponse.data.roster[x].person.fullName,
-                  age: playerDataResponses[x].data.people[0].currentAge,
-                  height: playerDataResponses[x].data.people[0].height,
-                  weight: playerDataResponses[x].data.people[0].weight,
-                  saves: playerResponses[x].data.stats[0].splits[0].stat.saves,
-                  number: teamResponse.data.roster[x].jerseyNumber,
-                  gaa: playerResponses[x].data.stats[0].splits[0].stat.goalAgainstAverage.toFixed(3),
-                  svPercent: playerResponses[x].data.stats[0].splits[0].stat.evenStrengthSavePercentage.toFixed(3),
-                  shutouts: playerResponses[x].data.stats[0].splits[0].stat.shutouts
+                  playerID: teamResponse.data.roster[x].person.id || 0,
+                  name: teamResponse.data.roster[x].person.fullName || 0,
+                  age: playerDataResponses[x].data.people[0].currentAge || 0,
+                  height: playerDataResponses[x].data.people[0].height || 0,
+                  weight: playerDataResponses[x].data.people[0].weight || 0,
+                  saves: playerResponses[x].data.stats[0].splits[0]?.stat?.saves || 0,
+                  number: teamResponse.data.roster[x].jerseyNumber || 0,
+                  gaa: playerResponses[x].data.stats[0].splits[0]?.stat.goalAgainstAverage.toFixed(3) || 0,
+                  svPercent: playerResponses[x].data.stats[0].splits[0]?.stat.evenStrengthSavePercentage.toFixed(3) || 0,
+                  shutouts: playerResponses[x].data.stats[0].splits[0]?.stat.shutouts || 0
                 })
               }
             }
